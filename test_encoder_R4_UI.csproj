@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="test_encoder_ou_limit_R4_avec_interface_graphique.xaml">
+    <Page Include="test_encoder_R4_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -64,8 +64,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logic.cs" />
-    <Compile Include="test_encoder_ou_limit_R4_avec_interface_graphique.xaml.cs">
-      <DependentUpon>test_encoder_ou_limit_R4_avec_interface_graphique.xaml</DependentUpon>
+    <Compile Include="test_encoder_R4_UI.xaml.cs">
+      <DependentUpon>test_encoder_R4_UI.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
