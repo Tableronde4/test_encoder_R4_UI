@@ -5,7 +5,7 @@ namespace test_encoder_R4_UI
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
-    /// test123
+    /// test1234567
     /// </summary>
     public partial class MainWindow : Window
     {
