@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using System.Threading.Tasks;
+using System;
 
 namespace test_encoder_R4_UI
 {
@@ -15,17 +17,21 @@ namespace test_encoder_R4_UI
         public MainWindow()
         {
             InitializeComponent();
+            input.LogicOn = true;
+            logic.StartLogic(input);
+            Task task = new Task(() => UpdateLogic());
+            task.Start();
         }
-
-        public void UpdateLogic(Input Input)
+        public void UpdateLogic()
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            output = logic.LogicR4(Input);
-            watch.Stop();
-            output.Speed = watch.Elapsed.TotalMilliseconds;
-            UpdateUI();
+            while (input.LogicOn == true)
+            {
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                output = logic.LogicR4(input);
+                watch.Stop();
+                output.Speed = watch.Elapsed.TotalMilliseconds;
+            }
         }
-
         public void UpdateUI()
         {
             if (output.Speed > output.SlowestSpeed)
@@ -38,7 +44,15 @@ namespace test_encoder_R4_UI
             VariableCounter.Content = output.Counter;
             VariableDirection.Content = output.Direction;
         }
-
+        public void CloseApplicationSafely(object sender, RoutedEventArgs e)
+        {
+            logic.EndLogic();
+            Application.Current.Shutdown();
+        }
+        public void RefreshUI(object sender, RoutedEventArgs e)
+        {
+            UpdateUI();
+        }
         private void LimitClose(object sender, RoutedEventArgs e)
         {
             if (input.LimitClose == 0)
@@ -51,7 +65,7 @@ namespace test_encoder_R4_UI
                 input.LimitClose = 0;
                 ButtonLimitClose.Background = Brushes.Black;
             }
-            UpdateLogic(input);
+            //UpdateLogic(input);
         }
         private void LimitOpen(object sender, RoutedEventArgs e)
         {
@@ -65,7 +79,7 @@ namespace test_encoder_R4_UI
                 input.LimitOpen = 0;
                 ButtonLimitOpen.Background = Brushes.Black;
             }
-            UpdateLogic(input);
+            //UpdateLogic(input);
         }
         private void Index(object sender, RoutedEventArgs e)
         {
@@ -79,7 +93,7 @@ namespace test_encoder_R4_UI
                 input.IndexI = 0;
                 ButtonIndex.Background = Brushes.Black;
             }
-            UpdateLogic(input);
+            //UpdateLogic(input);
         }
         private void Pulse(object sender, RoutedEventArgs e)
         {
@@ -93,7 +107,7 @@ namespace test_encoder_R4_UI
                 input.Pulse = 0;
                 ButtonPulse.Background = Brushes.Black;
             }
-            UpdateLogic(input);
+            //UpdateLogic(input);
         }
         private void BlackBox(object sender, RoutedEventArgs e)
         {
@@ -107,9 +121,8 @@ namespace test_encoder_R4_UI
                 input.BlackBox = 0;
                 ButtonBlackBox.Background = Brushes.Black;
             }
-            UpdateLogic(input);
+            //UpdateLogic(input);
         }
-
         private void Restart(object sender, RoutedEventArgs e)
         {
             input.LimitClose = 0;
@@ -149,6 +162,9 @@ namespace test_encoder_R4_UI
             logic.logicMemory.Counter = 0;
             logic.logicMemory.IndexCounter = 0;
             logic.logicMemory.Direction = ' ';
+
+            logic.EndLogic();
+            logic.StartLogic(input);
         }
     }
 
@@ -159,6 +175,7 @@ namespace test_encoder_R4_UI
         public int IndexI { get; set; }
         public int Pulse { get; set; }
         public int BlackBox { get; set; }
+        public bool LogicOn { get; set; } 
     }
     public class Output
     {

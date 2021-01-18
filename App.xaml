@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:test_encoder_ou_limit_R4_avec_interface_graphique"
-             StartupUri="test_encoder_ou_limit_R4_avec_interface_graphique.xaml">
+             StartupUri="test_encoder_R4_UI.xaml">
     <Application.Resources>
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
