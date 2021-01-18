@@ -17,6 +17,7 @@ namespace test_encoder_R4_UI
         public MainWindow()
         {
             InitializeComponent();
+            logic.logicMemory.Etat = 5;
             input.LogicOn = true;
             logic.StartLogic(input);
             Task task = new Task(() => UpdateLogic());
@@ -158,7 +159,7 @@ namespace test_encoder_R4_UI
             output.Direction = ' ';
             VariableDirection.Content = ' ';
 
-            logic.logicMemory.Etat = 0;
+            logic.logicMemory.Etat = 5;
             logic.logicMemory.Counter = 0;
             logic.logicMemory.IndexCounter = 0;
             logic.logicMemory.Direction = ' ';
