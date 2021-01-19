@@ -18,6 +18,7 @@ namespace test_encoder_R4_UI
         {
             InitializeComponent();
             logic.logicMemory.Etat = 5;
+            output.SlowestSpeed = 0.0000000000001;
             input.LogicOn = true;
             logic.OpenFile(input);
             
@@ -39,10 +40,9 @@ namespace test_encoder_R4_UI
         {
             if (output.Speed > output.SlowestSpeed)
             {
-                output.SlowestSpeed = (1/output.Speed);
-                VariableSlowestSpeed.Text = $"{output.SlowestSpeed}";
+                output.SlowestSpeed = output.Speed;
+                VariableSlowestSpeed.Text = $"{1/output.SlowestSpeed}";
             }
-            
             
             VariableSpeed.Text = $"{1/output.Speed/1000}";
             VariableIndex.Text = $"{output.IndexO}";
@@ -190,5 +190,4 @@ namespace test_encoder_R4_UI
         public int Counter { get; set; }
         public char Direction { get; set; }
     }
-
 }
