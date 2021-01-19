@@ -19,7 +19,8 @@ namespace test_encoder_R4_UI
             InitializeComponent();
             logic.logicMemory.Etat = 5;
             input.LogicOn = true;
-            logic.StartLogic(input);
+            logic.OpenFile(input);
+            
             Task task = new Task(() => UpdateLogic());
             task.Start();
         }
@@ -31,6 +32,7 @@ namespace test_encoder_R4_UI
                 output = logic.LogicR4(input);
                 watch.Stop();
                 output.Speed = watch.Elapsed.TotalMilliseconds;
+                //UpdateUI();
             }
         }
         public void UpdateUI()
@@ -38,16 +40,18 @@ namespace test_encoder_R4_UI
             if (output.Speed > output.SlowestSpeed)
             {
                 output.SlowestSpeed = (1/output.Speed);
-                VariableSlowestSpeed.Content = output.SlowestSpeed;
+                VariableSlowestSpeed.Text = $"{output.SlowestSpeed}";
             }
-            VariableSpeed.Content = 1/output.Speed/1000;
-            VariableIndex.Content = output.IndexO;
-            VariableCounter.Content = output.Counter;
-            VariableDirection.Content = output.Direction;
+            
+            
+            VariableSpeed.Text = $"{1/output.Speed/1000}";
+            VariableIndex.Text = $"{output.IndexO}";
+            VariableCounter.Text = $"{output.Counter}";
+            VariableDirection.Text = $"{output.Direction}";
         }
         public void CloseApplicationSafely(object sender, RoutedEventArgs e)
         {
-            logic.EndLogic();
+            logic.CloseFile();
             Application.Current.Shutdown();
         }
         public void RefreshUI(object sender, RoutedEventArgs e)
@@ -145,27 +149,27 @@ namespace test_encoder_R4_UI
             ButtonBlackBox.Background = Brushes.Black;
 
             output.Speed = 0;
-            VariableSpeed.Content = 0;
+            VariableSpeed.Text = $"{0}";
 
             output.SlowestSpeed = 0;
-            VariableSlowestSpeed.Content = 0;
+            VariableSlowestSpeed.Text = $"{0}";
 
             output.IndexO = 0;
-            VariableIndex.Content = 0;
+            VariableIndex.Text = $"{0}";
 
             output.Counter = 0;
-            VariableCounter.Content = 0;
+            VariableCounter.Text = $"{0}";
 
             output.Direction = ' ';
-            VariableDirection.Content = ' ';
+            VariableDirection.Text = $"{0}";
 
             logic.logicMemory.Etat = 5;
             logic.logicMemory.Counter = 0;
             logic.logicMemory.IndexCounter = 0;
             logic.logicMemory.Direction = ' ';
 
-            logic.EndLogic();
-            logic.StartLogic(input);
+            logic.CloseFile();
+            logic.OpenFile(input);
         }
     }
 

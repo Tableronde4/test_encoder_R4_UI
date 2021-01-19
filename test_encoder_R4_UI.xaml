@@ -16,14 +16,14 @@
         <TextBlock Text="Sorties :" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock Text="Fréquence (MHz) : " HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" />
         <TextBlock Text="Plus petite fréquence (kHz) : " HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="105"/>
-        <Label x:Name="VariableSpeed" Content="" HorizontalAlignment="Left" Margin="94,78,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
-        <Label x:Name="VariableSlowestSpeed" Content="" HorizontalAlignment="Left" Margin="105,115,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
+        <TextBlock x:Name="VariableSpeed" Text="" HorizontalAlignment="Left" Margin="94,78,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
+        <TextBlock x:Name="VariableSlowestSpeed" Text="" HorizontalAlignment="Left" Margin="105,115,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
         <TextBlock Text="Index : " HorizontalAlignment="Left" Margin="240,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock Text="Compteur : " HorizontalAlignment="Left" Margin="240,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock Text="Direction : " HorizontalAlignment="Left" Margin="240,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Label x:Name="VariableIndex" Content="" HorizontalAlignment="Left" Margin="278,78,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
-        <Label x:Name="VariableCounter" Content="" HorizontalAlignment="Left" Margin="302,99,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
-        <Label x:Name="VariableDirection" Content="" HorizontalAlignment="Left" Margin="297,120,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
+        <TextBlock x:Name="VariableIndex" Text="" HorizontalAlignment="Left" Margin="278,78,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
+        <TextBlock x:Name="VariableCounter" Text="" HorizontalAlignment="Left" Margin="302,99,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
+        <TextBlock x:Name="VariableDirection" Text="" HorizontalAlignment="Left" Margin="297,120,0,0" VerticalAlignment="Top" Height="27" Width="130"/>
         <Button Content="Remise à zéro" Click="Restart" HorizontalAlignment="Left" Margin="129,168,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.489,0.29"/>
         <Button Content="Sauvegarder et quitter" Click="CloseApplicationSafely" HorizontalAlignment="Left" Margin="331,0,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Content="Rafraichir les sorties" Click="RefreshUI" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="114"/>

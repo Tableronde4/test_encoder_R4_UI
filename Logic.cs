@@ -3,33 +3,29 @@ using System.IO;
 
 namespace test_encoder_R4_UI
 {
-
     public class Logic
     {
         public LogicMemory logicMemory = new LogicMemory();
         public Output outputLogic = new Output();
         public StreamWriter sw;
 
-        public void StartLogic(Input input)
+        public void OpenFile(Input input)
         {
             var path = "Log";
             if (!Directory.Exists(path))
+            {
                 Directory.CreateDirectory(path);
-
+            }
             sw = new StreamWriter($"{path}/ResultOfSimulationR4_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
 
-            sw.WriteLineAsync($"SimulationTestStartAt = { DateTime.Now:yyyyMMdd_HHmmss}");
+            sw.WriteLineAsync($"SimulationTestStartAt = {DateTime.Now:yyyyMMdd_HHmmss}");
             sw.WriteLineAsync("EachLineIsComposedOF:\nIndex,Counter,Direction");
-            
         }
-        public void EndLogic()
+        public void CloseFile()
         {
-            sw.WriteLineAsync($"SimulationTestEndedAt = { DateTime.Now:yyyyMMdd_HHmmss}");
+            sw.WriteLineAsync($"SimulationTestEndedAt = {DateTime.Now:yyyyMMdd_HHmmss}");
             sw.Close();
         }
-        
-
-
         public Output LogicR4(Input input)
         {
             switch (logicMemory.Etat)
@@ -202,16 +198,22 @@ namespace test_encoder_R4_UI
             if (input.LimitOpen == 1 || input.LimitClose == 1)
             {
                 logicMemory.Etat = 0;
+
                 logicMemory.Counter = 0;
+                outputLogic.Counter = logicMemory.Counter;
+
+                logicMemory.IndexCounter = 0;
+                outputLogic.IndexO = logicMemory.IndexCounter;
+
                 if (input.LimitOpen == 1)
                 {
                     logicMemory.Direction = '^';
-                    outputLogic.Direction = logicMemory.Direction;
+                    outputLogic.Direction = ' ';
                 }
                 else
                 {
                     logicMemory.Direction = 'v';
-                    outputLogic.Direction = logicMemory.Direction;
+                    outputLogic.Direction = ' ';
                 }
             }
         }
@@ -223,5 +225,4 @@ namespace test_encoder_R4_UI
         public int IndexCounter { get; set; }
         public char Direction { get; set; }
     }
-
 }
